@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button"
+import Hero from "./components/custom/Hero"
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button className="bg-black text-white">Click me</Button>
-    </div>
+    <Hero />
   )
 }
 
