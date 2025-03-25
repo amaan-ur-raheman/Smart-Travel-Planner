@@ -1,12 +1,24 @@
-# React + Vite
+# Smart Travel Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart Travel Planner is a React-based web application that uses AI to generate personalized travel itineraries. It allows users to plan trips, explore destinations, and get recommendations for hotels and places to visit, all tailored to their preferences and budget.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **AI-Powered Itineraries**: Generate custom travel plans using AI.
+- **Hotel Recommendations**: Get a list of hotels with details like price, ratings, and location.
+- **Daily Plans**: View a detailed day-by-day itinerary with places to visit and best times.
+- **Image Integration**: Fetch images for destinations and hotels using the Pexels API.
+- **Google Maps Integration**: Links to Google Maps for easy navigation.
+- **User Authentication**: Sign in with Google to save and manage trips.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React, TailwindCSS
+- **Backend Services**: Firebase Firestore
+- **APIs**:
+  - Google Places API
+  - Pexels API
+  - Google Generative AI API
+- **Routing**: React Router
+- **Authentication**: Google OAuth
