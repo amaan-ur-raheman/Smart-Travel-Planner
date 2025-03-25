@@ -12,8 +12,6 @@ import {
     DialogContent,
     DialogDescription,
     DialogHeader,
-    DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
@@ -64,13 +62,16 @@ const Header = () => {
     });
 
     return (
-        <div className="p-3 shadow-sm flex justify-between items-center px-5">
+        <div className="p-4 shadow-md bg-white flex justify-between items-center px-6">
+            {/* Logo Section */}
             <Link to={"/"}>
-            <img src="/logo.svg" />
+                <img src="/logo.svg" alt="Logo" className="h-10" />
             </Link>
-            <div>
+
+            {/* Navigation Section */}
+            <div className="flex items-center gap-6">
                 {user ? (
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4">
                         <a href="/create-trip">
                             <Button variant="outline" className="rounded-full">
                                 + Create Trips
@@ -82,6 +83,7 @@ const Header = () => {
                             </Button>
                         </a>
 
+                        {/* User Profile Section */}
                         <Popover>
                             <PopoverTrigger>
                                 <img
@@ -90,12 +92,13 @@ const Header = () => {
                                         e.target.onerror = null;
                                         e.target.src = "/default-avatar.jpeg";
                                     }}
-                                    className="h-[35px] w-[35px] rounded-full"
+                                    className="h-[40px] w-[40px] rounded-full border border-gray-300"
+                                    alt="User Avatar"
                                 />
                             </PopoverTrigger>
                             <PopoverContent>
                                 <h2
-                                    className="text-center cursor-pointer bg-black text-white px-3 rounded-xl w-[50%]"
+                                    className="text-center cursor-pointer bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-200 shadow-md"
                                     onClick={() => {
                                         googleLogout();
                                         localStorage.clear();
@@ -108,10 +111,16 @@ const Header = () => {
                         </Popover>
                     </div>
                 ) : (
-                    <Button onClick={() => setOpenDialog(true)}>Sign In</Button>
+                    <Button
+                        onClick={() => setOpenDialog(true)}
+                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-200"
+                    >
+                        Sign In
+                    </Button>
                 )}
             </div>
 
+            {/* Sign-In Dialog */}
             <Dialog
                 open={openDialog}
                 onOpenChange={setOpenDialog}
@@ -120,18 +129,22 @@ const Header = () => {
                 <DialogContent>
                     <DialogHeader>
                         <DialogDescription>
-                            <img src="/logo.svg" />
+                            <img
+                                src="/logo.svg"
+                                alt="Logo"
+                                className="mx-auto h-12"
+                            />
                             <h3 className="font-bold text-start text-lg mt-7">
                                 Sign In With Google
                             </h3>
                             <p className="text-start">
-                                Sign to the app with Google authentication
-                                securely
+                                Sign in to the app with Google authentication
+                                securely.
                             </p>
 
                             <Button
                                 onClick={login}
-                                className="w-full mt-5 flex gap-4 items-center"
+                                className="w-full mt-5 flex gap-4 items-center bg-blue-500 text-white hover:bg-blue-600 transition-all duration-200"
                             >
                                 <FcGoogle className="h-7 w-7" />
                                 Sign In With Google

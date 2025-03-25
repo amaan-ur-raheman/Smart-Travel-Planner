@@ -14,8 +14,6 @@ import {
     DialogContent,
     DialogDescription,
     DialogHeader,
-    DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { FcGoogle } from "react-icons/fc";
 import { useGoogleLogin } from "@react-oauth/google";
@@ -31,7 +29,7 @@ const CreateTrip = () => {
     const [formData, setFormData] = useState([]);
     const [loading, setLoading] = useState(false);
 
-	const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleInputChange = (name, value) => {
         setFormData({
@@ -70,7 +68,6 @@ const CreateTrip = () => {
         const docId = Date.now().toString();
         const user = JSON.parse(localStorage.getItem("user"));
 
-        // Add a new document in collection "cities"
         await setDoc(doc(db, "AITrips", docId), {
             userSelection: formData,
             tripData: JSON.parse(tripData),
@@ -79,7 +76,7 @@ const CreateTrip = () => {
         });
 
         setLoading(false);
-		navigate(`/view-trip/${docId}`);
+        navigate(`/view-trip/${docId}`);
     };
 
     const onGenerateTrip = async () => {
@@ -109,7 +106,7 @@ const CreateTrip = () => {
             .replace("{noOfDays}", formData?.noOFDays)
             .replace("{traveler}", formData?.traveler)
             .replace("{budget}", formData?.budget)
-			.replace("{noOfDays}", formData?.noOFDays);
+            .replace("{noOfDays}", formData?.noOFDays);
 
         console.log(FINAL_PROMPT);
 
@@ -125,15 +122,17 @@ const CreateTrip = () => {
     return (
         <div className="flex items-center justify-center mb-10">
             <div className="sm:px-10 md:px-32 lg:px-54 xl:px-10 px-5 mt-10">
-                <h2 className="font-bold text-3xl">
+                {/* Heading Section */}
+                <h2 className="font-bold text-3xl text-center">
                     Tell us your travel preferences 🏕️🌴
                 </h2>
-                <p className="mt-3 text-gray-500 text-xl">
+                <p className="mt-3 text-gray-500 text-xl text-center">
                     Just provide some basic information and our trip planner
                     will generate a customized itinerary based on your
                     preferences.
                 </p>
 
+                {/* Form Section */}
                 <div className="mt-20 flex flex-col gap-10">
                     {/* Destination Selection */}
                     <div>
@@ -150,10 +149,6 @@ const CreateTrip = () => {
                                     handleInputChange("location", place);
                                 },
                             }}
-                            loaderOptions={{
-                                async: true,
-                                defer: true,
-                            }}
                         />
                     </div>
 
@@ -165,6 +160,7 @@ const CreateTrip = () => {
                         <Input
                             placeholder="Ex. 3"
                             type="number"
+                            className="border border-gray-300 rounded-lg p-3"
                             onChange={(e) =>
                                 handleInputChange("noOFDays", e.target.value)
                             }
@@ -236,7 +232,7 @@ const CreateTrip = () => {
                     {/* Generate Trip Button */}
                     <Button
                         disabled={loading}
-                        className="text-xl p-5"
+                        className="text-xl p-5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-200"
                         onClick={onGenerateTrip}
                     >
                         {loading ? (
@@ -251,20 +247,23 @@ const CreateTrip = () => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogDescription>
-                                    <img src="/logo.svg" />
-                                    <h2 className="font-bold text-lg mt-7">
+                                    <img
+                                        src="/logo.svg"
+                                        className="mx-auto h-12"
+                                    />
+                                    <h2 className="font-bold text-lg mt-7 text-center">
                                         Sign In with Google
                                     </h2>
-                                    <p>
+                                    <p className="text-center text-gray-500">
                                         Sign in to the app with Google
-                                        authentication securely
+                                        authentication securely.
                                     </p>
 
                                     <Button
-                                        className="w-full mt-7 flex items-center"
+                                        className="w-full mt-7 flex items-center justify-center bg-blue-500 text-white hover:bg-blue-600 transition-all duration-200"
                                         onClick={login}
                                     >
-                                        <FcGoogle className="w-7 h-7" />
+                                        <FcGoogle className="w-7 h-7 mr-2" />
                                         Sign In with Google
                                     </Button>
                                 </DialogDescription>

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { getPlaceDetails, getPexelsImages } from "@/service/globalAPi";
+import {  getPexelsImages } from "@/service/globalAPi";
 import React, { useEffect, useState } from "react";
 import { FaShareAlt } from "react-icons/fa";
 

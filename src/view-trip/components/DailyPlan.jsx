@@ -15,7 +15,7 @@ const DailyPlan = ({ trip }) => {
             <h2 className="font-medium text-lg mb-3">Day {index + 1}</h2>
 
             {/* 🚀 Directly map day.plan */}
-            <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 min-h-[600px] gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5'>
             {day?.plan?.map((place, placeIndex) => (
               <div key={placeIndex}>
                 <h2 className='text-sm text-orange-600'>{place?.time}</h2>

@@ -41,7 +41,8 @@ const MyTrips = () => {
         const images = {};
         for (const trip of trips) {
             try {
-                const location = trip?.userSelection?.location?.label || "travel";
+                const location =
+                    trip?.userSelection?.location?.label || "travel";
                 const response = await getPexelsImages(location);
                 const photos = response.data.photos;
                 if (photos.length > 0) {
@@ -50,7 +51,10 @@ const MyTrips = () => {
                     images[trip.id] = "/placeholder.webp"; // Fallback image
                 }
             } catch (error) {
-                console.error(`Error fetching image for trip ${trip.id}:`, error);
+                console.error(
+                    `Error fetching image for trip ${trip.id}:`,
+                    error
+                );
                 images[trip.id] = "/placeholder.webp"; // Fallback image
             }
         }
@@ -62,7 +66,7 @@ const MyTrips = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-center mx-auto">
+        <div className="flex items-center justify-center mx-auto mb-10">
             <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">
                 <h2 className="font-bold text-2xl">My Trips</h2>
 
@@ -71,7 +75,9 @@ const MyTrips = () => {
                         <Link to={`/view-trip/${trip?.id}`} key={index}>
                             <UserTripCard
                                 trip={trip}
-                                imageUrl={tripImages[trip.id] || "/placeholder.webp"} // Pass image URL to UserTripCard
+                                imageUrl={
+                                    tripImages[trip.id] || "/placeholder.webp"
+                                } // Pass image URL to UserTripCard
                                 key={index}
                             />
                         </Link>

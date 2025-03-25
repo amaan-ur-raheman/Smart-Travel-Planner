@@ -13,7 +13,10 @@ const PlaceCardItem = ({ place }) => {
                 setImageUrl(photos[0].src.large); // Use the first image from Pexels
             }
         } catch (error) {
-            console.error(`Error fetching image for ${place?.placeName}:`, error);
+            console.error(
+                `Error fetching image for ${place?.placeName}:`,
+                error
+            );
         }
     };
 
@@ -36,7 +39,9 @@ const PlaceCardItem = ({ place }) => {
                 />
                 <div>
                     <h2 className="font-bold text-lg">{place?.placeName}</h2>
-                    <p className="text-sm text-gray-500">{place?.placeDetails}</p>
+                    <p className="text-sm text-gray-500">
+                        {place?.placeDetails}
+                    </p>
                     <h2 className="mt-1 text-xs">🕕 {place?.timeToTravel}</h2>
                     <p className="text-xs text-gray-500">
                         Best Time to Visit: {place?.bestTimeToVisit}
