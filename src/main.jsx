@@ -8,6 +8,7 @@ import Header from "./components/custom/Header";
 import { Toaster } from "./components/ui/sonner";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ViewTrip from "./view-trip/[tripId]";
+import MyTrips from "./my-trips";
 
 createRoot(document.getElementById("root")).render(
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/" element={<App />} />
                 <Route path="/create-trip" element={<CreateTrip />} />
                 <Route path="/view-trip/:tripId" element={<ViewTrip />} />
+                <Route path="/my-trips" element={<MyTrips />} />
             </Routes>
         </BrowserRouter>
     </GoogleOAuthProvider>

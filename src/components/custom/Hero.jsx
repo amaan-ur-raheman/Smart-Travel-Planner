@@ -20,6 +20,8 @@ const Hero = () => {
             <Link to={"/create-trip"}>
                 <Button className="">Get Started, It's Free</Button>
             </Link>
+
+            <img src="/mockup.webp" className="rounded-xl w-full h-1/2" alt="" />
         </div>
     );
 };

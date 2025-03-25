@@ -1,28 +1,35 @@
 import { Button } from "@/components/ui/button";
-import { getPlaceDetails } from "@/service/globalAPi";
-import React, { useEffect } from "react";
+import { getPlaceDetails, getPexelsImages } from "@/service/globalAPi";
+import React, { useEffect, useState } from "react";
 import { FaShareAlt } from "react-icons/fa";
 
 const Information = ({ trip }) => {
-    const getPlacePhoto = async () => {
-        const data = {
-           textQuery: trip?.userSelection?.location?.label, 
-        }
+    const [imageUrl, setImageUrl] = useState("/placeholder.webp");
 
-        const result =await getPlaceDetails(data).then((res) => {
-            console.log(res.data.places[0].photos[3].name);
-        })
-    }
+    const fetchPexelsImage = async () => {
+        try {
+            const location = trip?.userSelection?.location?.label;
+            if (!location) return;
+
+            const response = await getPexelsImages(location);
+            const photos = response.data.photos;
+            if (photos.length > 0) {
+                setImageUrl(photos[0].src.large);
+            }
+        } catch (error) {
+            console.error("Error fetching Pexels images:", error);
+        }
+    };
 
     useEffect(() => {
-        trip && getPlacePhoto();
-    }, [trip])
+        fetchPexelsImage();
+    }, [trip]);
 
     return (
         <div>
             <img
-                src="/placeholder.webp"
-                alt=""
+                src={imageUrl}
+                alt={trip?.userSelection?.location?.label || "Location"}
                 className="h-[340px] w-full border object-cover rounded-xl"
             />
 
